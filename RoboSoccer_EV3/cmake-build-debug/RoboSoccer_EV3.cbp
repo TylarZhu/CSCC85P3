@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="RoboSoccer_EV3"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RoboSoccer_EV3">
+				<Option output="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/RoboSoccer_EV3" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/."/>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/include"/>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src"/>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/API"/>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 RoboSoccer_EV3"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RoboSoccer_EV3/fast">
+				<Option output="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/RoboSoccer_EV3" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/."/>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/include"/>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src"/>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/API"/>
+					<Add directory="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 RoboSoccer_EV3/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/config.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/include/config.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/API/btcomm.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/API/btcomm.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/API/btcomm_test.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/API/bytecodes.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/API/c_com.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/API/lmstypes.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/avilib.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/avilib.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/button.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/color.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/color.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/dynctrl-logitech.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/gui.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/gui.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/huffman.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/imageCapture.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/imageCapture.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/imageProc.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/imageProc.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/luvcview.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/showdump.m">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/svdDynamic.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/svdDynamic.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/utils.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/utils.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/uvc_compat.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/uvcvideo.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/v4l2uvc.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/imagecapture/v4l2uvc.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/roboAI.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/roboAI.h">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/src/roboSoccer.c">
+			<Option target="RoboSoccer_EV3"/>
+		</Unit>
+		<Unit filename="/home/xingyuanzhu/Desktop/CSCC85/project/p3/RoboSoccer_EV3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
