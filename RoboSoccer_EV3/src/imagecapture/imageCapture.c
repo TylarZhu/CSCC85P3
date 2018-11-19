@@ -1710,7 +1710,20 @@ void kbHandler(unsigned char key, int x, int y) {
         }
     }
     if (key == 'v') {
-        
+        for(int i = 0; i < 10; i ++) {
+            BT_motor_port_start(KICK_MOTOR, 100);
+        }
+        BT_all_stop(0);
+        /*
+        BT_timed_motor_port_start(KICK_MOTOR, 100, 10, 4000, 10);
+        for(int i = 0; i < 1000000; i ++);*/
+        BT_all_stop(0);
+    }
+    if(key == 'c') {
+        for(int i = 0; i < 10; i ++) {
+            BT_motor_port_start(KICK_MOTOR, -100);
+        }
+        BT_all_stop(0);
     }
     if (key == 'o') {
         BT_all_stop(0);

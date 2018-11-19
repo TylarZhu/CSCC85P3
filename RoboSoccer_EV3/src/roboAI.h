@@ -28,6 +28,7 @@
 //update to actual motors
 #define LEFT_MOTOR MOTOR_C
 #define RIGHT_MOTOR MOTOR_D
+#define KICK_MOTOR MOTOR_B
 
 #define AI_SOCCER 0 	// Play soccer!
 #define AI_PENALTY 1    // Go score some goals!
