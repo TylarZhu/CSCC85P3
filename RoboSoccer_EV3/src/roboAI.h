@@ -141,4 +141,15 @@ void clear_motion_flags(struct RoboAI *ai);
    playing functionality below.
 *****************************************************************************/
 
+double vector(double x,double y);
+void kickball(void);
+void turn_right_small(void);
+void turn_left_small(void);
+//void Chase_mode(struct RoboAI *ai, struct blob *blobs, void *state);
+//void face_the_gate(struct RoboAI *ai, double x, double y);
+void get_gate(struct RoboAI *ai);
+void find_great_location(struct RoboAI *ai);
+void turn_to(struct RoboAI *ai, double x, double y);
+void move_to(struct RoboAI *ai, double x, double y);
+
 #endif

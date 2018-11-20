@@ -1725,6 +1725,7 @@ void kbHandler(unsigned char key, int x, int y) {
         }
         BT_all_stop(0);
     }
+
     if (key == 'o') {
         BT_all_stop(0);
         doAI = 0;
