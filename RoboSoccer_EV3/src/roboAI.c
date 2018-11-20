@@ -34,7 +34,7 @@
 #define LOWER_POWER 10 //for turn
 #define RUN_POWER 30 //for runing
 #define DISTANCE_LIMT 80 //for distance
-#define Robo_Y_Error 80
+#define Robo_Y_Error 20
 #define Robo_X_Error 180
 int Gate_x,Gate_y,Gate_Direction = 0;
 double GL_x,GL_y;
