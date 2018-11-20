@@ -70,7 +70,7 @@ void kickball(void){
     double dtime = 0;
     time4=time3=time(NULL);
     dtime=difftime(time4,time3);
-    BT_motor_port_start(MOTOR_D,-100);
+    BT_motor_port_start(KICK_MOTOR,-100);
     while(dtime < 0.005){
         time4=time(NULL);
         dtime=difftime(time4,time3);
@@ -78,7 +78,7 @@ void kickball(void){
     BT_all_stop(1);
     time4=time3=time(NULL);
     dtime=difftime(time4,time3);
-    BT_motor_port_start(MOTOR_D,100);
+    BT_motor_port_start(KICK_MOTOR,100);
     while(dtime < 0.005){
         time4=time(NULL);
         dtime=difftime(time4,time3);
@@ -89,7 +89,7 @@ void kickball(void){
 void turn_rigth_small(void){
     //rigth 10
     
-    BT_turn(MOTOR_A,70,MOTOR_B,-70);
+    BT_turn(LEFT_MOTOR,70,RIGHT_MOTOR,-70);
     for(int i=0;i<2000000000;i++){
         for(int j=0;j<10000;j++){
             double x=10.0;
@@ -103,7 +103,7 @@ void turn_rigth_small(void){
 void turn_left_small(void){
     //rigth 10
     
-    BT_turn(MOTOR_A,-70,MOTOR_B,70);
+    BT_turn(LEFT_MOTOR,-70,RIGHT_MOTOR,70);
     for(int i=0;i<2000000000;i++){
         for(int j=0;j<10000;j++){
             double x=10.0;
@@ -703,15 +703,18 @@ void Chase_mode(struct RoboAI *ai, struct blob *blobs, void *state){
     
     double dx,dy,d_angle,distance;
     
+
     dx=ai->st.old_bcx-ai->st.old_scx;
     dy=ai->st.old_bcy-ai->st.old_scy;
+
     d_angle = diff_angle(dx,dy)-diff_angle(ai->st.smx,ai->st.smy);
     distance = sqrt(dx*dx+dy*dy);
     
     printf("d_angle = %f  distance = %f \n",d_angle,distance);
-    if(distance < DISTANCE_LIMT ) ai->st.state=203;
+    if(distance < DISTANCE_LIMT ) 
+        ai->st.state=203;
     else if(d_angle < ANGLE_LIMIT && d_angle > (-1)*ANGLE_LIMIT) {
-        BT_turn(MOTOR_A,RUN_POWER,MOTOR_B,RUN_POWER);
+        BT_turn(LEFT_MOTOR,RUN_POWER,RIGHT_MOTOR,RUN_POWER);
         printf("get.......\n");
         //BT_all_stop(0);
         ai->st.state=203;
@@ -730,36 +733,36 @@ void Chase_mode(struct RoboAI *ai, struct blob *blobs, void *state){
             
             if(ai->st.old_bcx < ai->st.old_scx){
                 if(d_angle > ANGLE_LIMIT ) {
-                    BT_turn(MOTOR_A,HIGH_POWER,MOTOR_B,LOWER_POWER);//turn right I-2,4 case
+                    BT_turn(LEFT_MOTOR,HIGH_POWER,RIGHT_MOTOR,LOWER_POWER);//turn right I-2,4 case
                 }
-                else if (d_angle < (-1)*ANGLE_LIMIT)  BT_turn(MOTOR_A,LOWER_POWER,MOTOR_B,HIGH_POWER);//turn left I-1,3 case
+                else if (d_angle < (-1)*ANGLE_LIMIT)  
+                    BT_turn(LEFT_MOTOR,LOWER_POWER,RIGHT_MOTOR,HIGH_POWER);//turn left I-1,3 case
             }else{
                 if(d_angle > ANGLE_LIMIT) {//II- 3,4,1-1 case
                     
                     if(ai->st.old_bcy < ai->st.old_scy){//bcy < scy
                         if(ai->st.smy < 0) {
                             //angle > 0, smy <0 ,bcy < scy II-3 turn right
-                            BT_turn(MOTOR_A,HIGH_POWER,MOTOR_B,LOWER_POWER);//turn right II-3
+                            BT_turn(LEFT_MOTOR,HIGH_POWER,RIGHT_MOTOR,LOWER_POWER);//turn right II-3
                         }else{
                             //angle > 0 , smy>0 ,bcy < scy II-4 turn left
-                            BT_turn(MOTOR_A,LOWER_POWER,MOTOR_B,HIGH_POWER);//turn left II-4
+                            BT_turn(LEFT_MOTOR,LOWER_POWER,RIGHT_MOTOR,HIGH_POWER);//turn left II-4
                        }
                     }else{// angle > 0 ,bcy > scy , smy >0
-                        if(ai->st.smy > 0) BT_turn(MOTOR_A,HIGH_POWER,MOTOR_B,LOWER_POWER);//turn right II-1-1 ???
+                        if(ai->st.smy > 0) 
+                            BT_turn(LEFT_MOTOR,HIGH_POWER,RIGHT_MOTOR,LOWER_POWER);//turn right II-1-1 ???
                         //BT_turn(MOTOR_A,HIGH_POWER,MOTOR_B,LOWER_POWER);//turn right II-1-1 ???
                     }
-                                        
                 }else{ //II- 1,2,4-1 case
-                    
                     if(ai->st.old_bcy > ai->st.old_scy){ //bcy > scy
                         //angle<0 ,bcy >scy, smy <0 II-1 turn right
-                        if(ai->st.smy < 0) BT_turn(MOTOR_A,HIGH_POWER,MOTOR_B,LOWER_POWER);//turn right II-1
+                        if(ai->st.smy < 0) BT_turn(LEFT_MOTOR,HIGH_POWER,RIGHT_MOTOR,LOWER_POWER);//turn right II-1
                         //angle<0 , bcy>scy, smy >0 II -2
-                        else BT_turn(MOTOR_A,LOWER_POWER,MOTOR_B,HIGH_POWER);//turn left II-2
+                        else BT_turn(LEFT_MOTOR,LOWER_POWER,RIGHT_MOTOR,HIGH_POWER);//turn left II-2
                     }else{
                         //angle<0, bcy < scy, smy <0
                         //if(ai->st.smy < 0) BT_turn(MOTOR_A,LOWER_POWER,MOTOR_B,HIGH_POWER);//turn right II-4-1??
-                        BT_turn(MOTOR_A,LOWER_POWER,MOTOR_B,HIGH_POWER);//turn left II-4-1??
+                        BT_turn(LEFT_MOTOR,LOWER_POWER,RIGHT_MOTOR,HIGH_POWER);//turn left II-4-1??
                     }
                 }
             }
@@ -768,7 +771,7 @@ void Chase_mode(struct RoboAI *ai, struct blob *blobs, void *state){
         case 202:
             fprintf(stderr,"see angle !\n");
                 if(d_angle < ANGLE_LIMIT && d_angle > (-1)*ANGLE_LIMIT) {
-                    BT_turn(MOTOR_A,RUN_POWER,MOTOR_B,RUN_POWER);
+                    BT_turn(LEFT_MOTOR,RUN_POWER,RIGHT_MOTOR,RUN_POWER);
                     printf("get.......\n");
                      //BT_all_stop(0);
                     ai->st.state=203;
@@ -780,11 +783,8 @@ void Chase_mode(struct RoboAI *ai, struct blob *blobs, void *state){
                     printf("d_angle _201 = %f\n",d_angle);
                     //BT_all_stop(0);
                 }
-                
-            //BT_drive(LEFT_MOTOR, RIGHT_MOTOR, RUN_POWER);
-  //          ai->st.state=203;
-            // Start forward motion to establish heading             ai->st.state=103;	// <-- Set AI initial state to 100
             break;
+        // BALL KICK STATE
         case 203:
             fprintf(stderr,"Chasing the ball...\n");
             
