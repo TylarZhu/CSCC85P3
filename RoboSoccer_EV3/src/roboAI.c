@@ -626,7 +626,7 @@ void AI_main(struct RoboAI *ai, struct blob *blobs, void *state)
   *****************************************************************************/
      double dx,dy,d_angle;
      
-     dx= ai->st.old_bcx) - ai->st.old_scx;
+     dx= ai->st.old_bcx - ai->st.old_scx;
      dy=ai->st.old_bcy-ai->st.old_scy;
      
      if(ai->st.state >=101 && ai->st.state <= 199){
@@ -664,7 +664,7 @@ void AI_main(struct RoboAI *ai, struct blob *blobs, void *state)
      printf("state 2=.....%i\n",ai->st.state);
     
      
-     fprintf(stderr,"Self-ID:%i Current position: (%f,%f), current heading: [%f, %f], AI state=%d\n",ai->st.selfID,kalmanFilter_A(ai->st.old_scx),kalmanFilter_A(ai->st.old_scy),ai->st.smx,ai->st.smy,ai->st.state);
+     //fprintf(stderr,"Self-ID:%i Current position: (%f,%f), current heading: [%f, %f], AI state=%d\n",ai->st.selfID,kalmanFilter_A(ai->st.old_scx),kalmanFilter_A(ai->st.old_scy),ai->st.smx,ai->st.smy,ai->st.state);
      
      //kalmanFilter_A(double inData)
      fprintf(stderr,"opp-ID :%i Current position: (%f,%f), current heading: [%f, %f], AI state=%d\n",ai->st.oppID,ai->st.old_ocx,ai->st.old_ocy,ai->st.omx,ai->st.omy,ai->st.state);
