@@ -26,9 +26,9 @@
 #include <stdlib.h>
 
 //update to actual motors
-#define LEFT_MOTOR MOTOR_C
-#define RIGHT_MOTOR MOTOR_D
-#define KICK_MOTOR MOTOR_B
+#define LEFT_MOTOR MOTOR_A
+#define RIGHT_MOTOR MOTOR_B
+#define KICK_MOTOR MOTOR_D
 
 #define AI_SOCCER 0 	// Play soccer!
 #define AI_PENALTY 1    // Go score some goals!
@@ -151,5 +151,11 @@ void get_gate(struct RoboAI *ai);
 void find_great_location(struct RoboAI *ai);
 void turn_to(struct RoboAI *ai, double x, double y);
 void move_to(struct RoboAI *ai, double x, double y);
+double diff_angle(double x,double y);
+void find_great_location(struct RoboAI *ai);
+void get_gate(struct RoboAI *ai);
+void Chase_mode(struct RoboAI *ai, struct blob *blobs, void *state);
+double cal_distance(double x1,double y1,double x2,double y2);
+void move_to_position(struct RoboAI *ai, struct blob *blobs, void *state);
 
 #endif
