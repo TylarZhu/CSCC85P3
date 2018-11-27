@@ -157,5 +157,7 @@ void get_gate(struct RoboAI *ai);
 void Chase_mode(struct RoboAI *ai, struct blob *blobs, void *state);
 double cal_distance(double x1,double y1,double x2,double y2);
 void move_to_position(struct RoboAI *ai, struct blob *blobs, void *state);
+void face_to(struct RoboAI *ai, double dx, double dy);
+void move_forward_small(struct RoboAI *ai);
 
 #endif
