@@ -34,11 +34,12 @@
 int Gate_x,Gate_y,Gate_Direction = 0;
 double GL_x,GL_y;
 double middle_point_x,middle_point_y;
+double back = 0;
 
 #define ANGLE_LIMIT 10
 #define ANGLE_LIMIT_CHASE 25
 
-#define HIGH_POWER 20 //for turn
+#define HIGH_POWER 25 //for turn
 #define LOWER_POWER 5 //for turn
 #define HIGH_POWER_F 33 //for turn
 #define LOWER_POWER_F 10 //for turn
@@ -75,6 +76,8 @@ double position_goal_angle,position_goal_distance;
 
 double angle = 0, last_angle;
 int turn_dir = -1, last_turn_dir;
+double before_backward_x;
+double before_backward_y;
 
 void clear_motion_flags(struct RoboAI *ai)
 {
@@ -137,7 +140,7 @@ struct blob *id_coloured_blob2(struct RoboAI *ai, struct blob *blobs, int col)
 // else if (col==1) {vr_x=cos(2.0*PI*(120.0/360.0)); vr_y=sin(2.0*PI*(120.0/360.0));}    // detect green
  else if (col==2) {vr_x=cos(2.0*PI*(240.0/360.0)); vr_y=sin(2.0*PI*(240.0/360.0));}      // detect blue*/
  if (col==0) {vr_x=cos(0); vr_y=sin(0);}   // RED                               
- else if (col==2) {vr_x=cos(2.0*PI*(60.0/360.0)); vr_y=sin(2.0*PI*(60.0/360.0));}  // YELLOW
+ else if (col==2) {vr_x=cos(2.0*PI*(90.0/360.0)); vr_y=sin(2.0*PI*(90.0/360.0));}  // YELLOW
  else if (col==1) {vr_x=cos(2.0*PI*(240.0/360.0)); vr_y=sin(2.0*PI*(240.0/360.0));}      // BLUE
 
 
@@ -677,7 +680,7 @@ void AI_main(struct RoboAI *ai, struct blob *blobs, void *state)
             case 1:{
                 //kickball();
                 //exit(0);
-                if (opp_ball_distance<200 && angle_ball_opp < ANGLE_LIMIT){
+                if (opp_ball_distance<100 && angle_ball_opp < ANGLE_LIMIT){
                     ai->st.state = 50;//opp hold the ball
                     break;
                 }else{
@@ -689,7 +692,8 @@ void AI_main(struct RoboAI *ai, struct blob *blobs, void *state)
                 //attack
                 double self_ball_distance = cal_distance(ai->st.old_scx,ai->st.old_scy,ai->st.old_bcx,ai->st.old_bcy);
                 printf("self ball distance is %f\n",self_ball_distance);
-                if (self_ball_distance < 200){
+                double diff_angle_self_to_ball= diff_angle(ai->st.smx,ai->st.smy)-diff_angle(ai->st.old_bcx-ai->st.old_scx,ai->st.old_bcy-ai->st.old_scy);
+                if (self_ball_distance < 200 && diff_angle_self_to_ball < ANGLE_LIMIT){
                     ai->st.state = 3;
                 }else{
                     ai->st.state = 25;
@@ -725,13 +729,59 @@ void AI_main(struct RoboAI *ai, struct blob *blobs, void *state)
                 break;
 
             case 25://not hold the ball find the ball
+                {
+                double self_ball_distance = cal_distance(ai->st.old_scx,ai->st.old_scy,ai->st.old_bcx,ai->st.old_bcy);
+                if (self_ball_distance < 200){
+                    double diff_angle_self_to_ball= diff_angle(ai->st.smx,ai->st.smy)-diff_angle(ai->st.old_bcx-ai->st.old_scx,ai->st.old_bcy-ai->st.old_scy);
+                    if (diff_angle_self_to_ball > 45){
+                        backward_move(ai);
+                    }
+                }
                 face_to(ai,ai->st.old_bcx,ai->st.old_bcy);
+                }
                 break;
             case 26:
                 move_to(ai,ai->st.old_bcx,ai->st.old_bcy);
                 break;
             case 50://defense
+                {
                 
+                
+                middle_point_x = (ai->st.old_bcx + (1280-Gate_x))/2;
+                middle_point_y = (ai->st.old_bcy + 360)/2;
+                printf("want to hold at point (%f,%f)\n",middle_point_x,middle_point_y);
+                face_to(ai,middle_point_x,middle_point_y);
+                }
+                break;
+            case 51:
+                {
+                
+                
+                middle_point_x = (ai->st.old_bcx + (1280-Gate_x))/2;
+                middle_point_y = (ai->st.old_bcy + 360)/2;
+                move_to(ai,middle_point_x,middle_point_y);
+                }
+                break;
+
+            case 90:
+                {
+                
+                //if (ai->st.old_ocy > 360) { middle_point_y = 100;}
+                //else { middle_point_y = 620;}
+                middle_point_y = ai->st.old_bcy;
+                middle_point_x = ai->st.old_bcx; 
+                face_to(ai,middle_point_x,middle_point_y);
+                }
+                ai->st.state = 1;
+                break;
+            case 91:{
+                //if (ai->st.old_bcy > 360) { middle_point_y = 100;}
+                //else { middle_point_y = 620;}
+                middle_point_y = ai->st.old_bcy;
+                middle_point_x = ai->st.old_ocx; 
+                move_to(ai,middle_point_x,middle_point_y);
+
+                }
                 break;
 
         }
@@ -806,7 +856,7 @@ double cal_distance(double x1,double y1,double x2,double y2){
 }
 
 void kickball(void){
-    BT_timed_motor_port_start(KICK_MOTOR, 100, 80, 400, 80);
+    BT_timed_motor_port_start(KICK_MOTOR, 100, 0, 255, 0);
 }
 
 void turn_right_small(void){
@@ -871,21 +921,22 @@ void get_gate(struct RoboAI *ai){
         Gate_y = 360;
         Gate_Direction = 1;//
     }else{
-        Gate_x = 1280;
+        Gate_x = 1279;
         Gate_y = 360;
         Gate_Direction = -1;//
     }
 }
 
-void forbideen_hit(struct RoboAI *ai, double self_opp_distance, double self_opp_angle){
-    if(self_opp_distance < 30) {
+void forbideen_hit(struct RoboAI *ai, double self_opp_distance, int self_opp_angle){
+    printf("The self_opp_distance is %f;The self_opp_angle is %f\n",self_opp_distance,self_opp_angle);
+    
+    if(self_opp_distance < 250 ) {
         printf("Will hit !!!!!!");
         BT_all_stop(0);
         // if opp is infront of ourself, then backwards
-        if(self_opp_angle < 135) {
-            printf("hitting !!!!!!!!!!!!!!!\n");
-            backward_move(ai);
-        }
+        printf("hitting !!!!!!!!!!!!!!!\n");
+        if ( self_opp_angle < 45 || ai->st.state == 90) backward_move(ai);
+        
     }
 } 
 
@@ -894,68 +945,120 @@ void face_to(struct RoboAI *ai, double dx, double dy) {
   //self_oppgoal_distance = cal_distance(ai->st.old_scx,ai->st.old_scy,(double)OPPGOAL_POSITION_X,(double)OPPGOAL_POSITION_Y);
   //dx=(double)OPPGOAL_POSITION_X-ai->st.old_scx;
   //dy=(double)OPPGOAL_POSITION_Y-ai->st.old_scy;
-  double head_x = ai->st.smx;
-  double head_y = ai->st.smy;
+  double head_x,head_y;
+  if (back){
+      head_x = before_backward_x;
+      head_y = before_backward_y;
+  }else{
+      head_x = ai->st.smx;
+      head_y = ai->st.smy;
+  }
+  back = 0;
   double position_x = ai->st.old_scx;
   double position_y = ai->st.old_scy;
+  double opp_x = ai->st.old_ocx;
+  double opp_y = ai->st.old_ocy;
+  //double head_x = ai->st.smx;
+  //double head_y = ai->st.smy;
+  double opp_self_angle = diff_angle(opp_x - position_x, opp_y - position_y);
   double head = diff_angle(head_x,head_y);
-  double distance_angle = diff_angle(dx - position_x, dy - position_y);
-  double turn_left_angle = (int) (head - distance_angle + 360) % 360;
-  double turn_right_angle = (int) (-head + distance_angle + 360) % 360;
-  
+  int turn_left_angle = (int) (head - opp_self_angle + 360) % 360;
+  int turn_right_angle = (int) (-head + opp_self_angle + 360) % 360;
   if(turn_right_angle > turn_left_angle) {
-      last_turn_dir = turn_dir;
-      turn_dir = 0; // turn left
       angle = turn_left_angle;
   } else {
-      last_turn_dir = turn_dir;
-      turn_dir = 1; // turn right
       angle = turn_right_angle;
   }
 
-  printf("turn_right_angle = %f\n", turn_right_angle);
-  printf("turn_left_angle = %f\n", turn_left_angle);
-  printf("my head angle = %f\n",head);
-  printf("distance angle = %f\n", distance_angle);
-  printf("turn dir = %i left is 0 rigth is 1\n",turn_dir);
-  printf("************************************\n");
-  
-  //if(fabs(last_angle - angle) < 35) { 
-    if(angle < ANGLE_LIMIT && angle > (-1)*ANGLE_LIMIT) {
-        if (ai->st.state > 0 && ai->st.state <100){
-            BT_all_stop(0);
-            switch(ai->st.state){
-                case 4:
-                    ai->st.state = 5;
-                    break;
-                case 12:
-                    kickball();
-                    ai->st.state = 1;
-                case 25:
-                    ai->st.state = 26;
-                    break;
-            }
-            //if (ai->st.state == 4) ai->st.state = 5;
-        }
+  forbideen_hit(ai,cal_distance(position_x,position_y,opp_x,opp_y),angle);
 
-        if (ai->st.state > 100 && ai->st.state <200){
-            BT_all_stop(0);
-            if (ai->st.state == 101) ai->st.state = 102;
-            if (ai->st.state == 103) ai->st.state = 104;
-        }
-
-        
-    } else if(turn_dir) {
-      BT_turn(MOTOR_A, HIGH_POWER, MOTOR_B, LOWER_POWER);
-    } else {
-      BT_turn(MOTOR_A, LOWER_POWER, MOTOR_B, HIGH_POWER);
-    }
+  if (ai->st.state!=1 && ai->st.state != 90){
     
+    
+    double distance_angle = diff_angle(dx - position_x, dy - position_y);
+    turn_left_angle = (int) (head - distance_angle + 360) % 360;
+    turn_right_angle = (int) (-head + distance_angle + 360) % 360;
+    
+    if(turn_right_angle > turn_left_angle) {
+        last_turn_dir = turn_dir;
+        turn_dir = 0; // turn left
+        angle = turn_left_angle;
+    } else {
+        last_turn_dir = turn_dir;
+        turn_dir = 1; // turn right
+        angle = turn_right_angle;
+    }
 
+    printf("turn_right_angle = %f\n", turn_right_angle);
+    printf("turn_left_angle = %f\n", turn_left_angle);
+    printf("my head angle = %f\n",head);
+    printf("distance angle = %f\n", distance_angle);
+    printf("turn dir = %i left is 0 rigth is 1\n",turn_dir);
+    printf("************************************\n");
+    
+    //if(fabs(last_angle - angle) < 35) { 
+        if(angle < ANGLE_LIMIT && angle > (-1)*ANGLE_LIMIT) {
+            if (ai->st.state > 0 && ai->st.state <100){
+                BT_all_stop(0);
+                switch(ai->st.state){
+                    case 4:
+                        ai->st.state = 5;
+                        break;
+                    case 12:
+                        kickball();
+                        ai->st.state = 1;
+                        break;
+                    case 25:
+                        ai->st.state = 26;
+                        break;
+                    case 50:
+                        ai->st.state = 51;
+                        break;
+                    case 90:
+                        ai->st.state = 91;
+                        break;
+                }
+                //if (ai->st.state == 4) ai->st.state = 5;
+            }
+
+            if (ai->st.state > 100 && ai->st.state <200){
+                BT_all_stop(0);
+                if (ai->st.state == 101) ai->st.state = 102;
+                if (ai->st.state == 103) ai->st.state = 104;
+            }
+
+            
+        } else if(turn_dir) {
+        BT_turn(MOTOR_A, HIGH_POWER, MOTOR_B, LOWER_POWER);
+        } else {
+        BT_turn(MOTOR_A, LOWER_POWER, MOTOR_B, HIGH_POWER);
+        }
+        
+  }
 }
 
 void move_to(struct RoboAI *ai, double dx, double dy){
-    BT_timed_motor_port_start(LEFT_MOTOR | RIGHT_MOTOR,RUN_POWER,100, 500, 100);
+    double position_x = ai->st.old_scx;
+    double position_y = ai->st.old_scy;
+    double opp_x = ai->st.old_ocx;
+    double opp_y = ai->st.old_ocy;
+    double head_x = ai->st.smx;
+    double head_y = ai->st.smy;
+    double opp_self_angle = diff_angle(opp_x - position_x, opp_y - position_y);
+    double head = diff_angle(head_x,head_y);
+    int turn_left_angle = (int) (head - opp_self_angle + 360) % 360;
+    int turn_right_angle = (int) (-head + opp_self_angle + 360) % 360;
+    if(turn_right_angle > turn_left_angle) {
+        angle = turn_left_angle;
+    } else {
+        angle = turn_right_angle;
+    }
+    back = 0;
+
+    forbideen_hit(ai,cal_distance(position_x,position_y,opp_x,opp_y),angle);
+    if (ai->st.state !=1) {
+
+    
     //BT_timed_motor_port_start(RIGHT_MOTOR,RUN_POWER,100, 1000, 100);
     //    BT_motor_port_start(MOTOR_D,100);
     /*
@@ -967,16 +1070,21 @@ void move_to(struct RoboAI *ai, double dx, double dy){
     double distance = cal_distance(ai->st.old_scx,ai->st.old_scy,dx,dy);
     printf("self and destnation distance is %f\n",distance);
     if(ai->st.state >= 1 && ai->st.state < 100){
-        if (distance < 200){
+        if (distance < 100){
             switch (ai->st.state){
             case 13:
                 ai->st.state=1;
                 break;
             case 26:
                 ai->st.state=1;
+                break;
+            case 91:
+                ai->st.state=1;
+                break;
             
             }
         }else{
+            BT_timed_motor_port_start(LEFT_MOTOR | RIGHT_MOTOR,RUN_POWER,100, 300, 100);
             ai->st.state = 1;
         }
         
@@ -984,14 +1092,22 @@ void move_to(struct RoboAI *ai, double dx, double dy){
     if(ai->st.state >= 101 && ai->st.state < 200){
         if (distance<200){
             ai->st.state = 103;
+        }else{
+            BT_timed_motor_port_start(LEFT_MOTOR | RIGHT_MOTOR,RUN_POWER,100, 300, 100);
+            ai->st.state = 101;
         }
+    }
     }
 
 }
 
 void backward_move(struct RoboAI *ai){
+    back = 1;
+    before_backward_x = ai->st.smx;
+    before_backward_y = ai->st.smy;
+    
     BT_timed_motor_port_start(LEFT_MOTOR | RIGHT_MOTOR,-RUN_POWER,100, 500, 100);
-    if (ai->st.state>0 && ai->st.state<100) ai->st.state = 1;
+    if (ai->st.state>0 && ai->st.state<100) ai->st.state = 90;
 }
 /*
 // state 101 - 109
