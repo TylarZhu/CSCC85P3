@@ -148,9 +148,8 @@ void turn_left_small(void);
 //void Chase_mode(struct RoboAI *ai, struct blob *blobs, void *state);
 //void face_the_gate(struct RoboAI *ai, double x, double y);
 void get_gate(struct RoboAI *ai);
-void find_great_location(struct RoboAI *ai);
 void turn_to(struct RoboAI *ai, double x, double y);
-void move_to(struct RoboAI *ai, double x, double y);
+void move_to(struct RoboAI *ai,double x,double y);
 double diff_angle(double x,double y);
 void find_great_location(struct RoboAI *ai);
 void get_gate(struct RoboAI *ai);
@@ -159,5 +158,6 @@ double cal_distance(double x1,double y1,double x2,double y2);
 void move_to_position(struct RoboAI *ai, struct blob *blobs, void *state);
 void face_to(struct RoboAI *ai, double dx, double dy);
 void move_forward_small(struct RoboAI *ai);
+void backward_move(struct RoboAI *ai);
 
 #endif
